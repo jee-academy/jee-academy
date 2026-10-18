@@ -4,233 +4,856 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<title>Astra Academy | Learn Without Limits</title>
+<meta name="theme-color" content="#080d1b">
+
+<title>JEE ACADEMY | Learn. Practice. Achieve.</title>
+<meta name="description" content="Learn Physics, Chemistry and Mathematics for JEE Main and Advanced with organized video lectures and study resources.">
+
 <style>
 :root {
-  --bg: #0b1020;
-  --panel: #131c30;
+  --bg: #080d1b;
+  --surface: #10182b;
+  --surface2: #17223a;
   --text: #f4f6ff;
-  --muted: #a7b2ca;
-  --accent: #9b8cff;
+  --muted: #a1aec7;
+  --accent: #9b87ff;
+  --cyan: #56e0f0;
+  --border: #26334d;
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
   margin: 0;
-  background: var(--bg);
   color: var(--text);
-  font-family: Arial, sans-serif;
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.6;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
+
 header {
-  padding: 20px 6%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(8, 13, 27, .94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -.6px;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: var(--cyan);
+}
+
+.hero {
+  padding: 78px 0 65px;
+  background:
+    radial-gradient(ellipse at 85% 10%,
+      rgba(117, 83, 255, .23), transparent 45%),
+    radial-gradient(ellipse at 10% 90%,
+      rgba(39, 173, 211, .10), transparent 40%);
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--cyan);
+  border: 1px solid #245268;
+  background: #102535;
+  border-radius: 30px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+h1 {
+  max-width: 750px;
+  font-size: clamp(38px, 8vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 22px 0;
+}
+
+.gradient {
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 570px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 27px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 19px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-weight: 750;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #101126;
+  border-color: var(--accent);
+}
+
+.btn-secondary {
+  background: var(--surface);
+}
+
+.btn:hover {
+  filter: brightness(1.12);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+  max-width: 560px;
+}
+
+.stat {
+  border-left: 2px solid var(--accent);
+  padding-left: 13px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 19px;
+}
+
+.stat span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+section {
+  padding: 48px 0;
+}
+
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  margin: 0 0 6px;
+  font-size: clamp(25px, 5vw, 34px);
+  letter-spacing: -.6px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.subject {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 19px;
+  text-align: left;
+  color: var(--text);
+}
+
+.subject:hover,
+.subject.selected {
+  border-color: var(--accent);
+  background: var(--surface2);
+}
+
+.subject .icon {
+  font-size: 28px;
+}
+
+.subject strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.subject small {
+  color: var(--muted);
+}
+
+.course-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.course-tools input,
+.course-tools select {
+  min-width: 0;
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.course-tools input {
+  flex-basis: 220px;
+}
+
+.course-tools select {
+  flex-basis: 150px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.course {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.course-content {
+  padding: 20px;
+}
+
+.course-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #253049;
+  gap: 8px;
 }
-.logo { font-size: 21px; font-weight: 800; }
-.logo span { color: var(--accent); }
-nav a {
+
+.pill {
+  display: inline-block;
+  border: 1px solid #453e78;
+  color: #c8bdff;
+  background: #201c3b;
+  border-radius: 30px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.course h3 {
+  margin: 12px 0 6px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.course p {
   color: var(--muted);
-  text-decoration: none;
-  margin-left: 14px;
   font-size: 14px;
+  margin: 8px 0 17px;
 }
-.hero {
-  padding: 64px 6% 48px;
-  background: radial-gradient(ellipse at top right,
-    #30245e 0%, var(--bg) 65%);
+
+.video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #03050a;
 }
-.tag { color: #b8adff; font-size: 13px; }
-h1 {
-  font-size: clamp(34px, 7vw, 58px);
-  line-height: 1.08;
-  max-width: 650px;
-  margin: 18px 0;
-}
-.hero p { color: var(--muted); line-height: 1.7; }
-.search {
-  display: flex;
-  gap: 10px;
-  max-width: 520px;
-  margin-top: 25px;
-}
-input, select {
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid #34405b;
-  border-radius: 9px;
-  background: var(--panel);
-  color: var(--text);
-}
-input { flex: 1; }
-button {
-  padding: 12px 16px;
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
   border: 0;
-  border-radius: 9px;
-  background: var(--accent);
-  color: #101126;
-  font-weight: bold;
-  cursor: pointer;
 }
-section { padding: 34px 6%; }
-h2 { font-size: 25px; }
-.muted { color: var(--muted); }
-.filters {
+
+.video-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  background: linear-gradient(135deg, #171633, #101d32);
+  color: var(--muted);
+  text-align: center;
+  padding: 20px;
+}
+
+.video-placeholder span {
+  font-size: 30px;
+}
+
+.course-bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
-  margin: 20px 0;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
 }
-.filters button { background: #202a42; color: white; }
-.filters button.active { background: var(--accent); color: #101126; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 17px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid #253049;
-  border-radius: 15px;
-  padding: 22px;
-}
-.icon { font-size: 30px; }
-.card p { color: var(--muted); line-height: 1.6; }
-.card a { display: inline-block; margin-top: 8px; }
-a { color: #b8adff; }
-footer {
-  padding: 28px 6%;
-  color: var(--muted);
-  border-top: 1px solid #253049;
+
+.text-link {
+  color: var(--cyan);
   font-size: 13px;
+  font-weight: 750;
 }
-@media(max-width: 480px) {
-  header { padding: 18px 5%; }
-  nav a { margin-left: 8px; }
-  .hero { padding: 45px 5%; }
-  section { padding: 28px 5%; }
-  .search { flex-direction: column; }
+
+.empty {
+  color: var(--muted);
+  padding: 24px 0;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.feature {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.feature .icon {
+  font-size: 27px;
+}
+
+.feature h3 {
+  margin: 10px 0 6px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.cta {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px;
+  background: radial-gradient(ellipse at right,
+    #292052, var(--surface) 70%);
+}
+
+.cta h2 {
+  margin-top: 0;
+}
+
+.cta p {
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    min-height: 64px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 58px 0 42px;
+  }
+
+  h1 {
+    letter-spacing: -1.3px;
+  }
+
+  .subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 35px 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-links {
+    gap: 8px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .stats {
+    gap: 6px;
+  }
+
+  .stat strong {
+    font-size: 16px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">ASTRA<span> ACADEMY</span></div>
-  <nav>
-    <a href="#courses">Courses</a>
-    <a href="#about">About</a>
-  </nav>
+  <div class="container nav">
+    <a class="brand" href="#home">JEE <span>ACADEMY.</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
 </header>
 
 <main>
-<section class="hero">
-  <span class="tag">YOUR JOURNEY. YOUR FUTURE.</span>
-  <h1>Prepare smarter.<br>Dream bigger.</h1>
-  <p>
-    Learn Physics, Chemistry, Biology and Mathematics
-    with organized lectures and focused practice.
-  </p>
-  <div class="search">
-    <input id="search" placeholder="Search a subject or chapter"
-      aria-label="Search courses">
-    <button onclick="showCourses()">Explore</button>
+<section class="hero" id="home">
+  <div class="container">
+    <span class="eyebrow">YOUR JEE JOURNEY STARTS HERE</span>
+
+    <h1>
+      Learn with purpose.<br>
+      <span class="gradient">Achieve more.</span>
+    </h1>
+
+    <p>
+      Your learning space for Physics, Chemistry and Mathematics.
+      Explore lectures, strengthen your concepts and prepare
+      for JEE Main and Advanced, one chapter at a time.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="#courses">Explore lectures ↗</a>
+      <a class="btn btn-secondary" href="#about">Our mission</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>JEE</strong>
+        <span>Main + Advanced</span>
+      </div>
+      <div class="stat">
+        <strong>Learn</strong>
+        <span>At your pace</span>
+      </div>
+      <div class="stat">
+        <strong>Practice</strong>
+        <span>Build concepts</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="subjects">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Choose your subject</h2>
+      <p>Find the subject you want to study today.</p>
+    </div>
+
+    <div class="subject-grid">
+      <button class="subject" data-subject="Physics">
+        <span class="icon">⚡</span>
+        <strong>Physics</strong>
+        <small>Mechanics and more</small>
+      </button>
+
+      <button class="subject" data-subject="Chemistry">
+        <span class="icon">🧪</span>
+        <strong>Chemistry</strong>
+        <small>Physical, Organic, Inorganic</small>
+      </button>
+
+      <button class="subject" data-subject="Mathematics">
+        <span class="icon">📐</span>
+        <strong>Mathematics</strong>
+        <small>Build problem-solving skills</small>
+      </button>
+
+      <button class="subject" data-subject="Biology">
+        <span class="icon">🧬</span>
+        <strong>Biology</strong>
+        <small>Explore NEET preparation</small>
+      </button>
+    </div>
   </div>
 </section>
 
 <section id="courses">
-  <h2>Explore your learning path</h2>
-  <p class="muted">Choose a subject to begin.</p>
-  <div class="filters">
-    <button class="active" onclick="filter('All',this)">All</button>
-    <button onclick="filter('Physics',this)">Physics</button>
-    <button onclick="filter('Chemistry',this)">Chemistry</button>
-    <button onclick="filter('Maths',this)">Mathematics</button>
-    <button onclick="filter('Biology',this)">Biology</button>
+  <div class="container">
+    <div class="section-heading">
+      <h2>Video lectures</h2>
+      <p>Explore lessons and learn chapter by chapter.</p>
+    </div>
+
+    <div class="course-tools">
+      <input id="search" type="search"
+        placeholder="Search courses or chapters..."
+        aria-label="Search courses">
+
+      <select id="level" aria-label="Filter by exam">
+        <option value="All">All exams</option>
+        <option value="JEE Main">JEE Main</option>
+        <option value="JEE Advanced">JEE Advanced</option>
+        <option value="NEET">NEET</option>
+      </select>
+    </div>
+
+    <div class="course-grid" id="courseGrid"></div>
+    <p class="empty" id="empty" hidden>No matching lessons found.</p>
   </div>
-  <div class="grid" id="grid"></div>
 </section>
 
 <section id="about">
-  <h2>Built for curious minds</h2>
-  <p class="muted">
-    Our mission is to make quality learning more accessible
-    through clear explanations, consistent practice and free
-    educational resources.
-  </p>
+  <div class="container">
+    <div class="section-heading">
+      <h2>Learning made focused</h2>
+      <p>A simple place to build understanding and consistency.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <span class="icon">🎯</span>
+        <h3>Concept first</h3>
+        <p>Build a strong foundation before moving to harder questions.</p>
+      </article>
+
+      <article class="feature">
+        <span class="icon">📚</span>
+        <h3>Organized learning</h3>
+        <p>Keep subjects and chapters arranged in a clear structure.</p>
+      </article>
+
+      <article class="feature">
+        <span class="icon">🚀</span>
+        <h3>Keep progressing</h3>
+        <p>Study regularly, practise problems and review what you learn.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>One concept at a time.</h2>
+      <p>
+        Every strong preparation journey begins with learning
+        the basics and practising consistently.
+      </p>
+      <a class="btn btn-primary" href="#courses">Start learning ↗</a>
+    </div>
+  </div>
 </section>
 </main>
 
 <footer>
-  <p>ASTRA ACADEMY · Learn without limits.</p>
-  <p>Independent educational project. Not affiliated with
-  any coaching institute or examination authority.</p>
+  <div class="container footer-inner">
+    <span><strong>JEE ACADEMY</strong> · Learn. Practice. Achieve.</span>
+    <span>Independent educational project.</span>
+  </div>
 </footer>
 
 <script>
 const courses = [
-  {subject:"Physics", icon:"⚡",
-   title:"Motion in a Straight Line",
-   desc:"Build your mechanics fundamentals.",
-   url:""},
-  {subject:"Physics", icon:"🪐",
-   title:"Laws of Motion",
-   desc:"Understand forces and Newton's laws.",
-   url:""},
-  {subject:"Chemistry", icon:"🧪",
-   title:"Chemical Bonding",
-   desc:"Explore bonds, shapes and structures.",
-   url:""},
-  {subject:"Chemistry", icon:"⚗️",
-   title:"Atomic Structure",
-   desc:"Learn the foundations of atomic theory.",
-   url:""},
-  {subject:"Maths", icon:"📐",
-   title:"Quadratic Equations",
-   desc:"Practice essential algebra concepts.",
-   url:""},
-  {subject:"Biology", icon:"🧬",
-   title:"Cell: The Unit of Life",
-   desc:"Explore cell structure and functions.",
-   url:""}
+  {
+    id: "laws-of-motion",
+    subject: "Physics",
+    exam: "JEE Main",
+    title: "Laws of Motion",
+    description: "Study Newton's laws and build your mechanics fundamentals.",
+    videoId: "7ob4PtmHZEQ",
+    lecture: "Lecture 01"
+  },
+  {
+    id: "motion-straight-line",
+    subject: "Physics",
+    exam: "JEE Main",
+    title: "Motion in a Straight Line",
+    description: "Learn displacement, velocity, acceleration and motion graphs.",
+    videoId: "",
+    lecture: "Coming soon"
+  },
+  {
+    id: "chemical-bonding",
+    subject: "Chemistry",
+    exam: "JEE Main",
+    title: "Chemical Bonding",
+    description: "Explore chemical bonds, molecular shapes and bonding concepts.",
+    videoId: "",
+    lecture: "Coming soon"
+  },
+  {
+    id: "atomic-structure",
+    subject: "Chemistry",
+    exam: "JEE Main",
+    title: "Atomic Structure",
+    description: "Build your understanding of atoms and electronic structure.",
+    videoId: "",
+    lecture: "Coming soon"
+  },
+  {
+    id: "quadratic-equations",
+    subject: "Mathematics",
+    exam: "JEE Main",
+    title: "Quadratic Equations",
+    description: "Practise equations, roots and important algebra concepts.",
+    videoId: "",
+    lecture: "Coming soon"
+  },
+  {
+    id: "cell-unit-of-life",
+    subject: "Biology",
+    exam: "NEET",
+    title: "Cell: The Unit of Life",
+    description: "Explore cell structure, organelles and their functions.",
+    videoId: "",
+    lecture: "Coming soon"
+  }
 ];
 
-let selected = "All";
+let activeSubject = "All";
 
-function showCourses() {
-  const q = document.getElementById("search").value.toLowerCase();
-  const items = courses.filter(c =>
-    (selected === "All" || c.subject === selected) &&
-    (c.title + " " + c.subject + " " + c.desc)
-      .toLowerCase().includes(q)
-  );
+function renderCourses() {
+  const query = document.getElementById("search")
+    .value.trim().toLowerCase();
 
-  document.getElementById("grid").innerHTML = items.map(c => `
-    <article class="card">
-      <div class="icon">${c.icon}</div>
-      <p>${c.subject}</p>
-      <h3>${c.title}</h3>
-      <p>${c.desc}</p>
-      ${c.url
-        ? `<a href="${c.url}" target="_blank"
-             rel="noopener noreferrer">Watch lecture ↗</a>`
-        : `<span class="muted">Lecture coming soon</span>`}
-    </article>
-  `).join("") || "<p>No matching courses found.</p>";
+  const level = document.getElementById("level").value;
+
+  const filtered = courses.filter(course => {
+    const matchesSubject =
+      activeSubject === "All" ||
+      course.subject === activeSubject;
+
+    const matchesLevel =
+      level === "All" ||
+      course.exam === level ||
+      (level === "JEE Advanced" && course.exam === "JEE Main");
+
+    const text = [
+      course.subject,
+      course.exam,
+      course.title,
+      course.description
+    ].join(" ").toLowerCase();
+
+    return matchesSubject &&
+      matchesLevel &&
+      text.includes(query);
+  });
+
+  const grid = document.getElementById("courseGrid");
+  const empty = document.getElementById("empty");
+
+  grid.replaceChildren();
+  empty.hidden = filtered.length > 0;
+
+  filtered.forEach(course => {
+    const card = document.createElement("article");
+    card.className = "course";
+
+    const content = document.createElement("div");
+    content.className = "course-content";
+
+    const meta = document.createElement("div");
+    meta.className = "course-meta";
+
+    const subject = document.createElement("span");
+    subject.className = "pill";
+    subject.textContent = course.subject;
+
+    const exam = document.createElement("span");
+    exam.className = "muted";
+    exam.style.fontSize = "11px";
+    exam.textContent = course.exam;
+
+    meta.append(subject, exam);
+
+    const title = document.createElement("h3");
+    title.textContent = course.title;
+
+    const description = document.createElement("p");
+    description.textContent = course.description;
+
+    const bottom = document.createElement("div");
+    bottom.className = "course-bottom";
+
+    const lecture = document.createElement("span");
+    lecture.className = "muted";
+    lecture.style.fontSize = "12px";
+    lecture.textContent = course.lecture;
+
+    bottom.append(lecture);
+
+    if (course.videoId) {
+      const watch = document.createElement("a");
+      watch.className = "text-link";
+      watch.href = "https://www.youtube.com/watch?v=" +
+        encodeURIComponent(course.videoId);
+      watch.target = "_blank";
+      watch.rel = "noopener noreferrer";
+      watch.textContent = "Open on YouTube ↗";
+      bottom.append(watch);
+    }
+
+    content.append(meta, title, description, bottom);
+    card.append(content);
+
+    if (course.videoId) {
+      const videoWrap = document.createElement("div");
+      videoWrap.className = "video-wrap";
+
+      const iframe = document.createElement("iframe");
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(course.videoId);
+      iframe.title = course.title + " video lecture";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.setAttribute(
+        "allow",
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      );
+      iframe.setAttribute("allowfullscreen", "");
+
+      videoWrap.append(iframe);
+      card.insertBefore(videoWrap, content);
+    } else {
+      const placeholder = document.createElement("div");
+      placeholder.className = "video-placeholder";
+
+      const inner = document.createElement("div");
+      const icon = document.createElement("span");
+      icon.textContent = "▶";
+
+      const label = document.createElement("div");
+      label.textContent = "Lecture coming soon";
+
+      inner.append(icon, label);
+      placeholder.append(inner);
+      card.insertBefore(placeholder, content);
+    }
+
+    grid.append(card);
+  });
 }
 
-function filter(subject, button) {
-  selected = subject;
-  document.querySelectorAll(".filters button")
-    .forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  showCourses();
-}
+document.querySelectorAll(".subject").forEach(button => {
+  button.addEventListener("click", () => {
+    const subject = button.dataset.subject;
+
+    activeSubject =
+      activeSubject === subject ? "All" : subject;
+
+    document.querySelectorAll(".subject").forEach(item => {
+      item.classList.toggle(
+        "selected",
+        item.dataset.subject === activeSubject
+      );
+    });
+
+    renderCourses();
+    document.getElementById("courses").scrollIntoView();
+  });
+});
 
 document.getElementById("search")
-  .addEventListener("input", showCourses);
-showCourses();
+  .addEventListener("input", renderCourses);
+
+document.getElementById("level")
+  .addEventListener("change", renderCourses);
+
+renderCourses();
 </script>
+
 </body>
 </html>
