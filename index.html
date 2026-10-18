@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Astra Academy | Learn Without Limits</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #131c30;
+  --text: #f4f6ff;
+  --muted: #a7b2ca;
+  --accent: #9b8cff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header {
+  padding: 20px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #253049;
+}
+.logo { font-size: 21px; font-weight: 800; }
+.logo span { color: var(--accent); }
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 14px;
+  font-size: 14px;
+}
+.hero {
+  padding: 64px 6% 48px;
+  background: radial-gradient(ellipse at top right,
+    #30245e 0%, var(--bg) 65%);
+}
+.tag { color: #b8adff; font-size: 13px; }
+h1 {
+  font-size: clamp(34px, 7vw, 58px);
+  line-height: 1.08;
+  max-width: 650px;
+  margin: 18px 0;
+}
+.hero p { color: var(--muted); line-height: 1.7; }
+.search {
+  display: flex;
+  gap: 10px;
+  max-width: 520px;
+  margin-top: 25px;
+}
+input, select {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #34405b;
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+}
+input { flex: 1; }
+button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #101126;
+  font-weight: bold;
+  cursor: pointer;
+}
+section { padding: 34px 6%; }
+h2 { font-size: 25px; }
+.muted { color: var(--muted); }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 20px 0;
+}
+.filters button { background: #202a42; color: white; }
+.filters button.active { background: var(--accent); color: #101126; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 17px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid #253049;
+  border-radius: 15px;
+  padding: 22px;
+}
+.icon { font-size: 30px; }
+.card p { color: var(--muted); line-height: 1.6; }
+.card a { display: inline-block; margin-top: 8px; }
+a { color: #b8adff; }
+footer {
+  padding: 28px 6%;
+  color: var(--muted);
+  border-top: 1px solid #253049;
+  font-size: 13px;
+}
+@media(max-width: 480px) {
+  header { padding: 18px 5%; }
+  nav a { margin-left: 8px; }
+  .hero { padding: 45px 5%; }
+  section { padding: 28px 5%; }
+  .search { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ASTRA<span> ACADEMY</span></div>
+  <nav>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <span class="tag">YOUR JOURNEY. YOUR FUTURE.</span>
+  <h1>Prepare smarter.<br>Dream bigger.</h1>
+  <p>
+    Learn Physics, Chemistry, Biology and Mathematics
+    with organized lectures and focused practice.
+  </p>
+  <div class="search">
+    <input id="search" placeholder="Search a subject or chapter"
+      aria-label="Search courses">
+    <button onclick="showCourses()">Explore</button>
+  </div>
+</section>
+
+<section id="courses">
+  <h2>Explore your learning path</h2>
+  <p class="muted">Choose a subject to begin.</p>
+  <div class="filters">
+    <button class="active" onclick="filter('All',this)">All</button>
+    <button onclick="filter('Physics',this)">Physics</button>
+    <button onclick="filter('Chemistry',this)">Chemistry</button>
+    <button onclick="filter('Maths',this)">Mathematics</button>
+    <button onclick="filter('Biology',this)">Biology</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="about">
+  <h2>Built for curious minds</h2>
+  <p class="muted">
+    Our mission is to make quality learning more accessible
+    through clear explanations, consistent practice and free
+    educational resources.
+  </p>
+</section>
+</main>
+
+<footer>
+  <p>ASTRA ACADEMY · Learn without limits.</p>
+  <p>Independent educational project. Not affiliated with
+  any coaching institute or examination authority.</p>
+</footer>
+
+<script>
+const courses = [
+  {subject:"Physics", icon:"⚡",
+   title:"Motion in a Straight Line",
+   desc:"Build your mechanics fundamentals.",
+   url:""},
+  {subject:"Physics", icon:"🪐",
+   title:"Laws of Motion",
+   desc:"Understand forces and Newton's laws.",
+   url:""},
+  {subject:"Chemistry", icon:"🧪",
+   title:"Chemical Bonding",
+   desc:"Explore bonds, shapes and structures.",
+   url:""},
+  {subject:"Chemistry", icon:"⚗️",
+   title:"Atomic Structure",
+   desc:"Learn the foundations of atomic theory.",
+   url:""},
+  {subject:"Maths", icon:"📐",
+   title:"Quadratic Equations",
+   desc:"Practice essential algebra concepts.",
+   url:""},
+  {subject:"Biology", icon:"🧬",
+   title:"Cell: The Unit of Life",
+   desc:"Explore cell structure and functions.",
+   url:""}
+];
+
+let selected = "All";
+
+function showCourses() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const items = courses.filter(c =>
+    (selected === "All" || c.subject === selected) &&
+    (c.title + " " + c.subject + " " + c.desc)
+      .toLowerCase().includes(q)
+  );
+
+  document.getElementById("grid").innerHTML = items.map(c => `
+    <article class="card">
+      <div class="icon">${c.icon}</div>
+      <p>${c.subject}</p>
+      <h3>${c.title}</h3>
+      <p>${c.desc}</p>
+      ${c.url
+        ? `<a href="${c.url}" target="_blank"
+             rel="noopener noreferrer">Watch lecture ↗</a>`
+        : `<span class="muted">Lecture coming soon</span>`}
+    </article>
+  `).join("") || "<p>No matching courses found.</p>";
+}
+
+function filter(subject, button) {
+  selected = subject;
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+  showCourses();
+}
+
+document.getElementById("search")
+  .addEventListener("input", showCourses);
+showCourses();
+</script>
+</body>
+</html>
